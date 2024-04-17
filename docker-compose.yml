@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  django:
+    container_name: ld_django
+    build:
+      context: learning_django
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: ld_postgres
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
