@@ -3,14 +3,13 @@ FROM python:3.10
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY . .
 
+ARG PYTHONUNBUFFERED=1
 ARG PIP_NO_CACHE_DIR=1
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
-COPY . .
 
 COPY entrypoint.sh /
 

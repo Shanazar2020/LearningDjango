@@ -1,4 +1,5 @@
- 
-python manage.py makemigrations --noinput || exit 1
-python manage.py migrate --noinput || exit 1
-python manage.py runserver
+#!/bin/sh
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
