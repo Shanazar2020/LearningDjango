@@ -4,12 +4,12 @@ services:
   django:
     container_name: ld_django
     build:
-      context: learning_django
+      context: learning_django/
       dockerfile: Dockerfile
     ports:
       - "8002:8002"
     volumes:
-      - .:/app
+      - ./learning_django:/app
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
